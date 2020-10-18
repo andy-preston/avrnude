@@ -1,1 +1,0 @@
-/home/andyp/bin/avrnude
