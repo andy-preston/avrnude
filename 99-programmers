@@ -1,0 +1,18 @@
+[ "${PRODUCT}" = "1a86/7523/263" ] && {
+    DEV_NAME=$( ls /sys/${DEVPATH} | grep tty )
+    [ ! -z "${DEV_NAME}" ] && [ "${ACTION}" = "add" ] && ln -s /dev/${DEV_NAME} /dev/ttyAVR
+    [ "${ACTION}" = "remove" ] && rm /dev/ttyAVR
+}
+
+[ "${PRODUCT}" = "10c4/ea60/100" ] && {
+    # it looks like serial num and dev name are available
+    # at 2 different passes of this file ... it's complicated
+    DEV_NAME=$( ls /sys/${DEVPATH} | grep tty )
+    [ ! -z "${DEV_NAME}" ] && {
+        # SERIAL_NUM=$(cat /sys/${DEVPATH}/serial)
+        # echo "/sys/${DEVPATH}" &gt;/dev/kmsg
+        # [ "${SERIAL_NUM}" = "monitor" ] &&
+        [ "${ACTION}" = "add" ] && ln -s /dev/${DEV_NAME} /dev/ttyMonitor
+    }
+    [ "${ACTION}" = "remove" ] && rm /dev/ttyMonitor
+}
