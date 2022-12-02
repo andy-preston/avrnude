@@ -11,8 +11,10 @@ Also, bear in mind that you could well be sending the wrong number of
 data bits of the AVR side.
 
 On an atTiny2313 at least, the default is 5 bits and you need to
+
 ```c
 UCSRC = (1 << UCSZ1) | (1 << UCSZ0)
 ```
+
 to get it to the more usual 8 data bits
 (1 stop bit, no parity are the other defaults and that's fine)
