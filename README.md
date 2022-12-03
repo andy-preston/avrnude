@@ -108,9 +108,20 @@ config proxy
     option stopbits 1
 ```
 
-## Additional
+## Beyond AVR - STM32 and The Black Magic Probe
 
-### USB Serial Adaptors
+Still on the "do it one day" list. The
+[Black Magic Probe](blue-pill-black-magic-probe.md)
+is already ready though.
+
+## Serial Debug Monitor
+
+This is still my old "pre-ser2net" version... updates to follow.
+
+[Serial debug monitor](scripts/serdebug.sh)
+[Notes](serdebug.md)
+
+## USB Serial Adaptors
 
 As well as CH340G in the programmer, I've  also got plans for a
 CP2102 which can be programmed to give a unique ID:
@@ -120,13 +131,6 @@ Currently, I've no udev on the version of OpenWRT and I haven't had as
 much success with "raw-hotplug" as I would have liked. I still haven't
 completed implementing a script in
 [/etc/hotplug.d/usb/99-programmers](99-programmers)
-
-## Serial Debug Monitor
-
-This is still my old "pre-ser2net" version... updates to follow.
-
-[Serial debug monitor](serdebug.sh)
-[Notes](serdebug.md)
 
 ## Notes for further work:
 

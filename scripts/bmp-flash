@@ -1,0 +1,49 @@
+#!/bin/bash
+
+OPTS=`getopt -o it: --long interactive,target -- "$@"`
+
+if [ $? != 0 ]
+then
+    echo "Usage: $0 [-i|--interactive] [-t|--target /dev/ttyACM0] object-file" >&2
+    exit 1
+fi
+
+eval set -- "$OPTS"
+
+NOT_INTERACTIVE=true
+TARGET=/dev/ttyACM0
+
+while true
+do
+  case "$1" in
+    -i | --interactive )
+        NOT_INTERACTIVE=false
+        shift
+    ;;
+    -t | --target )
+        TARGET=$2
+        shift
+        shift
+    ;;
+    -- )
+        shift
+        break
+    ;;
+    * )
+        break
+    ;;
+  esac
+done
+
+PARAMS=$1
+shift
+PARAMS="$PARAMS -ex \"target extended-remote $TARGET\""
+PARAMS="$PARAMS -ex \"monitor swdp\" -ex \"attach 1\" -ex \"load\""
+if $NOT_INTERACTIVE
+then
+    PARAMS="$PARAMS -ex \"set confirm off\" -ex \"quit\""
+fi
+PARAMS="$PARAMS $@"
+
+eval gdb-multiarch $PARAMS
+    
