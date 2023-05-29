@@ -63,7 +63,7 @@ below.
 ### Build Machine Configuration
 
 In the build script for my
-[GPO 746 Telephone Linked to Android](https://gitlab.com/edgeeffect/gpo-746-android)
+[GPO 746 Telephone Linked to Android](https://github.com/andy-preston/gpo-746-android)
 project, I call `avrdude` with:
 
 ```sh
