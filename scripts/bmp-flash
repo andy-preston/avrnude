@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://andy-preston.github.io/blue-pill-black-magic-probe.html
+
 OPTS=`getopt -o it: --long interactive,target -- "$@"`
 
 if [ $? != 0 ]
@@ -46,4 +48,3 @@ fi
 PARAMS="$PARAMS $@"
 
 eval gdb-multiarch $PARAMS
-    

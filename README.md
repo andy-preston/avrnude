@@ -111,7 +111,7 @@ config proxy
 ## Beyond AVR - STM32 and The Black Magic Probe
 
 Still on the "do it one day" list. The
-[Black Magic Probe](blue-pill-black-magic-probe.md)
+[Black Magic Probe](https://andy-preston.github.io/blue-pill-black-magic-probe.html)
 is already ready though.
 
 ## Serial Debug Monitor
