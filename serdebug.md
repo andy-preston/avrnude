@@ -1,8 +1,10 @@
+# AVRNude Serial Debugging
+
 An AVR is transmitting debugging data over a UART line
 to a serial USB adaptor (CP2102)
 being monitored / logged on a PC over ssh.
 
-[Script](serdebug.sh)
+[Script](https://github.com/andy-preston/avrnude/blob/master/scripts/serdebug.sh)
 
 If you're having problems with your `stty` settings (I did)
 `-icanon` was the "magic incantation" that made all the difference for me.
