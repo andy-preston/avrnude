@@ -102,9 +102,9 @@ Add a programmer based on
 
 ### Serial Debug Monitor
 
-This is still my old "pre-ser2net" version... needs updating.
-
-[serial debug](https://github.com/andy-preston/avrnude/blob/master/serdebug.md)
+This is still my old
+["pre-ser2net" version](https://github.com/andy-preston/avrnude/blob/master/serdebug.md)
+it needs updating.
 
 ### STM32 and The Black Magic Probe
 
