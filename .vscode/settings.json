@@ -4,6 +4,7 @@
         "avrdude",
         "avrnude",
         "multiarch",
+        "noninteractive",
         "Rozee"
     ]
 }
