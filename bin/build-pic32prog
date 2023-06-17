@@ -4,13 +4,35 @@ if [ ! -f pic32prog/makefile ]
 then
     git submodule update --init
 fi
+if [ ! -f pic32prog/hidapi/hidapi/hidapi.h ]
+then
+    cd pic32prog
+    git submodule update --init
+    cd ..
+fi
+
+echo '#!/bin/bash' > pic32prog/build_script
+echo export GITCOUNT=$(git rev-list HEAD --count) >> pic32prog/build_script
+echo cd hidapi >> pic32prog/build_script
+echo ./bootstrap >> pic32prog/build_script
+echo ./configure >> pic32prog/build_script
+echo make >> pic32prog/build_script
+echo cd .. >> pic32prog/build_script
+echo make >> pic32prog/build_script
+chmod u+x pic32prog/build_script
+
+for MAKEFILE in $(grep -l GITCOUNT pic32prog/make*)
+do
+    grep -v '^GITCOUNT' $MAKEFILE > plop
+    mv plop $MAKEFILE
+done
 
 case $1 in
 'bash')
     COMMAND='bash'
     ;;
 *)
-    COMMAND='make'
+    COMMAND='./build_script'
     ;;
 esac
 
