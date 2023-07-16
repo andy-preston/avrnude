@@ -5,7 +5,10 @@ AVRNude is a networked server for
 based on
 [OpenWRT](https://openwrt.org/)
 and including an
-[stk500v1 programmer](https://github.com/arduino/arduino-examples/blob/main/examples/11.ArduinoISP/ArduinoISP/ArduinoISP.ino).
+[stk500v1 programmer](https://github.com/arduino/arduino-examples/blob/main/examples/11.ArduinoISP/ArduinoISP/ArduinoISP.ino)
+for AVRs and (currently in development) an
+[ascii ICSP programmer](https://github.com/sergev/pic32prog/tree/master/bitbang)
+for PIC32s
 
 ## Hardware
 
@@ -15,11 +18,11 @@ It's based on an old cheap ethernet router from E-Bay. Almost anything will
 do as long as it has a USB port and is capable of running
 [OpenWRT](https://openwrt.org/toh/start)
 
-### ATMega328 - AVR Programmer
+### ATMega328 - AVR/PIC32 Programmer
 
 ![AVRNude Programmer](https://i.imgur.com/vZm1doT.jpg)
 
-AVRs are programmed through a DIY minimal "Arduino" board with a
+AVRs and PIC32s are programmed through a DIY minimal "Arduino" board with a
 CH340G USB to serial chip (as used on the Arduino Nano).
 
 This also has a few extra LEDs on it as used by the
@@ -76,6 +79,7 @@ The baud rate given is the default used by `avrdude`.
 > Robert Rozee's programmer code for `pic32prog` runs at 115200,
 > which might case some compatibility issues between the two.
 > TODO: check running `avrdude` at 115200.
+> [Issue 1](https://github.com/andy-preston/avrnude/issues/1)
 
 ### Build Machine Configuration
 
@@ -90,15 +94,11 @@ avrdude -c stk500v1 -P net:avrnude.lan:5000 -p t2313 -V ...
 Where `avrnude.lan` is the hostname of the old router
 with the programmer attached.
 
-> TODO: does `pic32prog` have "networked ports"?
-> If not, can the network code from `avrdude` be factored into it.
+> TODO: `pic32prog` doesn't have any facility to connect to networked devices.
+> Can the network code from `avrdude` be factored into it?
+> [Issue 2](https://github.com/andy-preston/avrnude/issues/2)
 
 ## Expansion / Future Plans
-
-### PIC32
-
-Add a programmer based on
-[pic32prog](https://github.com/sergev/pic32prog) too
 
 ### Serial Debug Monitor
 
