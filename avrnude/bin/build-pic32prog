@@ -1,0 +1,53 @@
+#!/bin/bash
+
+SRC=
+
+if [ ! -f ./tools/pic32prog/makefile ]
+then
+    git submodule update --init
+fi
+
+cd ./tools/pic32prog
+
+if [ ! -f ./hidapi/hidapi/hidapi.h ]
+then
+    git submodule update --init
+fi
+
+# The build script ensures that the `hidapi` submodule is configured
+# and compiled before compiling `pic32prog`.
+# It also moves the creation of the minor version number to outside
+# the container, 'cus there's no `git` inside.
+sed -e "s/___GITCOUNT___/$(git rev-list HEAD --count)/g" \
+    ../../avrnude/docker/build-pic32prog/build_script \
+    > build_script
+chmod u+x build_script
+
+for MAKEFILE in $(grep -l GITCOUNT make*)
+do
+    grep -v '^GITCOUNT' $MAKEFILE > plop
+    mv plop $MAKEFILE
+done
+
+cd ../..
+
+case $1 in
+'bash')
+    COMMAND='bash'
+    ;;
+*)
+    COMMAND='./build_script'
+    ;;
+esac
+
+docker build \
+    --progress=plain \
+    --tag build-pic32prog \
+    ./avrnude/docker/build-pic32prog
+
+docker run \
+    --rm --interactive --tty \
+    --volume $(pwd)/tools/pic32prog:/usr/local/src \
+    --user $(id -u):$(id -g) \
+    build-pic32prog \
+    ${COMMAND}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export GITCOUNT=___GITCOUNT___
+
+cd hidapi
+[ -f aclocal.m4 ] || ./bootstrap
+[ -f config.h.in ] || ./configure
+make
+cd ..
+
+make
