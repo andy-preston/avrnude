@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case $1 in
+*)
+    COMMAND='bash'
+    ;;
+esac
+
+docker build \
+    --progress=plain \
+    --tag build-programmer-firmware \
+    ./avrnude/docker/build-firmware
+
+docker run \
+    --rm --interactive --tty \
+    --volume $(pwd)/firmware:/usr/local/src \
+    --user $(id -u):$(id -g) \
+    build-programmer-firmware \
+    ${COMMAND}

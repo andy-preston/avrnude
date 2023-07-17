@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SRC=
-
 if [ ! -f ./tools/pic32prog/makefile ]
 then
     git submodule update --init
