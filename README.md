@@ -20,7 +20,7 @@ do as long as it has a USB port and is capable of running
 
 ### ATMega328 - AVR/PIC32 Programmer
 
-![AVRNude Programmer](https://i.imgur.com/vZm1doT.jpg)
+![AVRNude Programmer](https://i.ibb.co/HXGVm7D/DIY-AVR-Programmer.jpg)
 
 AVRs and PIC32s are programmed through a DIY minimal "Arduino" board with a
 CH340G USB to serial chip (as used on the Arduino Nano).
